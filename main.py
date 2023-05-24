@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
+from colorama import Fore
 
 
 
@@ -17,7 +17,8 @@ flower_data = [[3,1.5,1],
 def get_unknown_flower() -> list:
     l = float(input("Enter the length of the unknown flower: "))
     w = float(input("Enter the width of the unknown flower: "))
-    return list(l, w)
+    l = [l,w]
+    return l
 
 def sigmoid(x: float):
     return (1 / (1 + np.exp(-x)))
@@ -26,9 +27,7 @@ def d_sigmoid(x):
     return (sigmoid(x) * (1 - sigmoid(x)))
 
 
-# unknown_flower = get_unknown_flower()
-
-
+unknown_flower = get_unknown_flower()
 
 
 # Get learning rate
@@ -90,9 +89,21 @@ for i in range(50000):
 # plt.xlabel("Training loop ->")
 # plt.show()
 
-for i in range(len(flower_data)):
-    p=flower_data[i]
-    print(p)
-    z = p[0] * w1 + p[1] * w2 + b
-    prediction = sigmoid(z)
-    print(prediction)
+#Prediction cross checker
+# for i in range(len(flower_data)):
+#     p=flower_data[i]
+#     print(p)
+#     z = p[0] * w1 + p[1] * w2 + b
+#     prediction = sigmoid(z)
+#     print(prediction)
+
+# Unknown flower finder
+print(unknown_flower)
+z = unknown_flower[0] * w1 + unknown_flower[1] * w2 + b
+prediction = sigmoid(z)
+if prediction > 0.5:
+    print("The flower is", Fore.RED + "Red")
+elif prediction < 0.5:
+    print("The flower is",Fore.BLUE + "Blue")
+else:
+    print("Result inconclusive")
