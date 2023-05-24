@@ -83,19 +83,22 @@ for i in range(50000):
             cost_sum += np.square(prediction - target)
         costs.append(cost_sum)
 
-# plt.plot(costs)
-# plt.title("Cost sum graph")
-# plt.ylabel("Sum Cost function value")
-# plt.xlabel("Training loop ->")
-# plt.show()
+# Graphs the cost sum function for user to check if the cost sum is minimizing effectively
+def graph_costs():
+    plt.plot(costs)
+    plt.title("Cost sum graph")
+    plt.ylabel("Sum Cost function value")
+    plt.xlabel("Training loop ->")
+    plt.show()
 
-#Prediction cross checker
-# for i in range(len(flower_data)):
-#     p=flower_data[i]
-#     print(p)
-#     z = p[0] * w1 + p[1] * w2 + b
-#     prediction = sigmoid(z)
-#     print(prediction)
+# Prediction cross checker
+def prediction_crosscheck():
+    for i in range(len(flower_data)):
+        p=flower_data[i]
+        print(p)
+        z = p[0] * w1 + p[1] * w2 + b
+        prediction = sigmoid(z)
+        print(prediction)
 
 # Unknown flower finder
 print(unknown_flower)
@@ -107,3 +110,5 @@ elif prediction < 0.5:
     print("The flower is",Fore.BLUE + "Blue")
 else:
     print("Result inconclusive")
+
+print(Fore.WHITE)
